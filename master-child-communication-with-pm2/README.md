@@ -1,4 +1,4 @@
-Since pm2 internally manages the processes and distribute the incomming connections, we cannot longer use `cluster` module. Therefore we need to use a message broker such as **RabbitMQ**. RabbitMQ will be deployed in a container to avoid local installations. Only package needed is `` which will be installed via NPM.
+Since pm2 internally manages the processes and distribute the incomming connections, we cannot longer use `cluster` module. Therefore we need to use a message broker such as **RabbitMQ**. RabbitMQ will be deployed in a container to avoid local installations. Only package needed is `amqplib` which will be used to connect to RabbitMQ server. It can be installed via NPM.
 
 Start RabbitMQ environment:
 ```sh

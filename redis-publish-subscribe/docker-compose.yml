@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  redis:
+    container_name: pm2-redis-tutorial2
+    image: redis:7.0
+    ports:
+      - 6379:6379
