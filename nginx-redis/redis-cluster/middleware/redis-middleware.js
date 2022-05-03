@@ -3,8 +3,7 @@ const config = require('./config')
 
 async function getRedisClient() {
     const client = redis.createClient({
-        host: config.redisHost,
-        port: config.redisPort
+        url: `redis://${config.redisHost}:${config.redisPort}`
     });
     /** in v4, wait until establish the connection */
     await client.connect()
@@ -13,12 +12,13 @@ async function getRedisClient() {
 
 
 async function redisMiddleware(req, res, next) {
+    console.log(`Request to ${req.originalUrl} came to app: ${process.argv[4]}`)
     const redisClient = await getRedisClient();
 
     switch(req.url) {
         case '/users':
             const reply = await redisClient.get('users').
-                catch(err => console.log(err))
+                catch(err => console.log('error'))
             if (reply !== null) {
                 res.send(reply)
                 return console.log('response from redis!')
